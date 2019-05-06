@@ -4,6 +4,9 @@ import com.qiqi.miniprogram.springbootmybatisminiprogram.entity.Area;
 
 import java.util.List;
 
+/**
+ * @author QIQI
+ */
 public interface AreaDao {
     /**
      * 所有区域
