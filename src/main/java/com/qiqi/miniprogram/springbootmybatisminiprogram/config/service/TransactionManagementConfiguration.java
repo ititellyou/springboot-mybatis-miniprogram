@@ -17,6 +17,6 @@ public class TransactionManagementConfiguration implements TransactionManagement
 	private DataSource dataSource;
 	@Override
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
-		return new DataSourceTransactionManager(dataSource); 
+		return new DataSourceTransactionManager(dataSource);
 	}
 }
