@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qiqi.miniprogram.springbootmybatisminiprogram.dao.AreaDao">
-    <select id="queryArea" resultType="">
+    <select id="queryArea" resultType="com.qiqi.miniprogram.springbootmybatisminiprogram.entity.Area">
         SELECT area_id,area_name,priority,create_time,last_edit_time FROM tb_area ORDER BY priority DESC
     </select>
     <select id="queryAreaById" resultType="com.qiqi.miniprogram.springbootmybatisminiprogram.entity.Area">
@@ -13,6 +13,7 @@
         INSERT INTO tb_area(area_name,priority,create_time,last_edit_time) VALUES(#{areaName},#{priority},#{createTime},#{lastEditTime})
     </insert>
     <update id="updateArea" parameterType="com.qiqi.miniprogram.springbootmybatisminiprogram.entity.Area">
+        UPDATE tb_area
         <set>
             <if test="areaName!= null">area_name=#{areaName}</if>
             <if test="priority!= null">priority=#{priority}</if>

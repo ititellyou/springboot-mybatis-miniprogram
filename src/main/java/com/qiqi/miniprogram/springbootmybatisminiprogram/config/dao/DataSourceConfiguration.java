@@ -19,6 +19,7 @@ public class DataSourceConfiguration {
     private String jdbcUser;
     @Value("${jdbc.password}")
     private String jdbcPassword;
+
     @Bean(name = "dataSource")
     public ComboPooledDataSource createDateSource() throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
