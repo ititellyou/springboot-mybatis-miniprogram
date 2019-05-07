@@ -1,7 +1,7 @@
 <!--pages/list/list.wxml-->
 <view class='container'>
   <view class='widget'>
-    <text class='column'>ID</text>
+    <!--<text class='column'>ID</text>-->
     <text class='column'>区域名</text>
     <text class='column'>优先级</text>
     <text class='link-column'>操作</text>
@@ -10,7 +10,7 @@
 		<view>
 			<block wx:for="{{list}}" wx:key="list">
 				<view class="widget">
-					<text class="column">{{item.areaId}}</text>
+					<!--<text class="column">{{item.areaId}}</text>-->
 					<text class="column">{{item.areaName}}</text>
 					<text class="column">{{item.priority}}</text>
 					<view class="link-column">
