@@ -12,7 +12,7 @@
     <insert id="insertArea" useGeneratedKeys="true" keyProperty="areaId" keyColumn="area_id" parameterType="com.qiqi.miniprogram.springbootmybatisminiprogram.entity.Area">
         INSERT INTO tb_area(area_name,priority,create_time,last_edit_time) VALUES(#{areaName},#{priority},#{createTime},#{lastEditTime})
     </insert>
-    <update id="updateArea" parameterType="com.qiqi.miniprogram.springbootmybatisminiprogram.entity.Area">
+    <update id="updateArea">
         UPDATE tb_area
         SET area_name=#{areaName},priority=#{priority},last_edit_time=#{lastEditTime}
         <!--<set>
