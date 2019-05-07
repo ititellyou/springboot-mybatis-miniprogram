@@ -17,45 +17,62 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class AreaDaoTest {
 
-	@Autowired
-	private AreaDao areaDao;
+    @Autowired
+    private AreaDao areaDao;
 
-	@Test
-	public void queryArea() {
-		List<Area> areaList = areaDao.queryArea();
-		assertEquals(4,areaList.size());
-	}
+    @Test
+    public void queryArea() {
+        List<Area> areaList = areaDao.queryArea();
+        assertEquals(4,areaList.size());
+    }
 
-	@Test
-	public void queryAreaById() {
-		Area area = areaDao.queryAreaById(1);
-		assertEquals("东",area.getAreaName());
-	}
+    @Test
+    public void queryAreaById() {
+        Area area = areaDao.queryAreaById(2);
+        assertEquals("东苑", area.getAreaName());
+    }
 
-	@Test
-	public void insertArea() {
-		Area area = new Area();
-		area.setAreaName("东南");
-		area.setPriority(3);
-		int effectedNum = areaDao.insertArea(area);
-		assertEquals(1,effectedNum);
-	}
+    @Test
+    public void insertArea() {
+        Area area = new Area();
+        area.setAreaName("测试区域");
+        area.setCreateTime(new Date());
+        area.setPriority(1);
+        //将该对象实例添加入库
+        int effectedNum = areaDao.insertArea(area);
+        //检测影响行数
+        assertEquals(1, effectedNum);
+        //校验总数是否+1
+        List<Area> areaList = areaDao.queryArea();
+        assertEquals(3, areaList.size());
+    }
 
-	@Test
-//    @Ignore
-	public void updateArea() {
-		Area area = new Area();
-		area.setAreaId(4);
-		area.setAreaName("东南");
-		area.setPriority(5);
-		area.setLastEditTime(new Date());
-		int effectedNum = areaDao.updateArea(area);
-		assertEquals(1,effectedNum);
-	}
+    @Test
+    public void updateArea() {
+        List<Area> areaList = areaDao.queryArea();
+        for (Area area : areaList) {
+            if ("测试区域".equals(area.getAreaName())) {
+                // 对比之前的priority值
+                assertEquals(1, area.getPriority().intValue());
+                area.setPriority(2);
+                int effectedNum = areaDao.updateArea(area);
+                assertEquals(1, effectedNum);
+            }
+        }
+    }
 
-	@Test
-	public void deleteArea() {
-		int effectedNum = areaDao.deleteArea(5);
-		assertEquals(1,effectedNum);
-	}
+    @Test
+    @Ignore
+    public void deleteArea() {
+        List<Area> areaList = areaDao.queryArea();
+        for (Area area : areaList) {
+            if ("测试区域".equals(area.getAreaName())) {
+                int effectedNum = areaDao.deleteArea(area.getAreaId());
+                assertEquals(1, effectedNum);
+            }
+        }
+        // 重新获取一次列表，看看总数是否少1
+        areaList = areaDao.queryArea();
+        assertEquals(2, areaList.size());
+    }
 }
